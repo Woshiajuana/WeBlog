@@ -14,8 +14,8 @@
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="2"><i class="el-icon-edit"></i><a href="#/editor">发表文章</a></el-menu-item>
-            <el-menu-item index="3"><i class="el-icon-star-off"></i><a href="#/editor">标签管理</a></el-menu-item>
-            <el-menu-item index="4"><i class="el-icon-plus"></i><a href="#/editor">用户管理</a></el-menu-item>
+            <el-menu-item index="3"><i class="el-icon-star-off"></i><a href="#/label">标签管理</a></el-menu-item>
+            <el-menu-item index="4"><i class="el-icon-plus"></i><a href="#/user">用户管理</a></el-menu-item>
         </el-menu>
     </div>
 </template>

@@ -3,7 +3,7 @@
 </template>
 <script>
     export default {
-        name: 'label'
+        name: 'user'
     }
 </script>
 <style lang="scss">

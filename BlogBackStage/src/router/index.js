@@ -1,10 +1,12 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Index from '../views/index/index.vue';
-import Login from '../views/login/login.vue';
-import List from '../views/list/list.vue';
-import Editor from '../views/editor/editor.vue';
-import Tool from '../assets/lib/Tool';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Index from '../views/index/index.vue'
+import Login from '../views/login/login.vue'
+import List from '../views/list/list.vue'
+import Editor from '../views/editor/editor.vue'
+import Tool from '../assets/lib/Tool'
+import Label from '../views/label/Label.vue'
+import User from '../views/user/User.vue'
 
 Vue.use(Router);
 
@@ -32,6 +34,18 @@ let router = new Router({
                     path: 'editor/:_id',
                     name: 'editor',
                     component: Editor
+                },
+                /**标签页*/
+                {
+                    path: 'label',
+                    name: 'label',
+                    component: Label
+                },
+                /**用户页*/
+                {
+                    path: 'user',
+                    name: 'user',
+                    component: User
                 }
             ]
         },
