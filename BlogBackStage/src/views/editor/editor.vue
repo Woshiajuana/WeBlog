@@ -124,6 +124,7 @@
                             this.article_title = this.article.article_title;
                             this.article_type = this.article.article_type;
                             this.article_con = this.article.article_con;
+                            this.simplemde && this.simplemde.value(this.article_con);
                         } else {
                             this.$message({
                                 showClose: true,
