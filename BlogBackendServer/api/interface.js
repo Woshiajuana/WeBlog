@@ -192,7 +192,7 @@ router.get('/blog_backstage/createLabel',check_api_token,( req, res ) => {
         });
         return;
     }
-    label.label && label.label.trim();
+    label.label && label.label.trim() && label.label.toLowerCase();
     /**存储*/
     label_module.create(label, (err,doc) => {
         if (err) res.json({status: 0,msg:'创建失败，是否已有该标签'});
