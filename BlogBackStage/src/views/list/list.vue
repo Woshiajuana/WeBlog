@@ -114,10 +114,6 @@
                 })
             },
             handleIconClick () {
-//                if(!this.key_word){
-//                    this.$message({type: 'info', message: '请输入关键字'});
-//                    return;
-//                }
                 Tool.jumpPage('?tab='+this.$route.query.tab+'&&key_word='+this.key_word);
             },
             handleCurrentChange (val) {

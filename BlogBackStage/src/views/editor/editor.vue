@@ -109,7 +109,7 @@
                 this.is_loading = false;
                 this.article_type = '';
                 this.article_title = '';
-                this.simplemde.value("");
+                this.simplemde && this.simplemde.value("");
             },
             /**获取数据*/
             fetchArticle (_id) {
@@ -167,20 +167,26 @@
                         }
                     },300)
                 });
+            },
+            editorOrUpdate (route) {
+                var _id = route ? route.params._id : this.$route.params._id;
+                if (_id) {
+                    this.fetchArticle( _id );
+                } else {
+                    this.reset();
+                    this.article = '';
+                    this.$store.commit(types.SET_TAB_INDEX,'2');
+                }
             }
         },
         watch: {
             simplemde: function (val) {
                 this.simplemde.value(this.article_con);
-            }
+            },
+            '$route': 'editorOrUpdate'
         },
         created () {
-            var _id = this.$route.params._id;
-            if (_id) {
-                this.fetchArticle( _id );
-            } else {
-                this.$store.commit(types.SET_TAB_INDEX,'2');
-            }
+            this.editorOrUpdate();
             this.$nextTick( () => {
                 setTimeout( () => {
                     this.simplemde = new SimpleMDE({
