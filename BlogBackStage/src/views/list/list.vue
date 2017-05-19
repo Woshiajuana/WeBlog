@@ -19,27 +19,36 @@
                     tooltip-effect="dark"
                     style="width: 100%">
                     <el-table-column
+                        type="index"
+                        width="55">
+                    </el-table-column>
+                    <el-table-column
                         label="文章名"
                         show-overflow-tooltip>
                         <template scope="scope">{{ scope.row.article_title }}</template>
                     </el-table-column>
                     <el-table-column
-                        prop="article_type"
                         label="类别"
                         width="150">
+                        <template scope="scope">
+                            <el-tag type="default" close-transition>{{scope.row.article_type}}</el-tag>
+                        </template>
                     </el-table-column>
                     <el-table-column
                         label="发表时间"
-                        width="180"
+                        width="200"
                         show-overflow-tooltip>
-                        <template scope="scope">{{ scope.row.article_time | articleTime }}</template>
+                        <template scope="scope">
+                            <el-icon name="time"></el-icon>
+                            <span style="margin-left: 10px">{{ scope.row.article_time | articleTime }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                         label="操作"
                         width="220">
                         <template scope="scope">
-                            <el-button type="info" size="small" @click="editorArticle(scope.row)">编辑</el-button>
-                            <el-button @click="offOrReleaseArticle(scope.row)" v-if="scope.row.article_is_publish" type="warning" size="small">下架</el-button>
+                            <el-button type="default" size="small" @click="editorArticle(scope.row)">编辑</el-button>
+                            <el-button @click="offOrReleaseArticle(scope.row)" v-if="scope.row.article_is_publish" type="info" size="small">下架</el-button>
                             <el-button @click="offOrReleaseArticle(scope.row)" v-else type="info" size="small">发表</el-button>
                             <el-button @click="deleteArticle(scope.row)" type="danger" size="small">删除</el-button>
                         </template>
@@ -132,7 +141,7 @@
                             this.fetchArticlesList();
                             this.$message({type: 'success', message: result.msg});
                         }else{
-                            this.$message({type: 'success', message: result.msg});
+                            this.$message({type: 'error', message: result.msg});
                         }
                     });
                 }).catch(() => {
@@ -146,7 +155,7 @@
                 var key_word = route ? route.query.key_word: this.$route.query.key_word;
                 var page_num = route ? route.query.page_num: this.$route.query.page_num;
                 this.page_num = +page_num || 1;
-                this.$store.commit(types.SET_TAB_INDEX,this.judgeTab(tab));
+                this.$store.commit(types.SET_TAB_INDEX,tab);
                 Util.fetchArticlesList({
                     tab: tab,
                     page_num: this.page_num,
@@ -168,34 +177,6 @@
             /**编辑文档*/
             editorArticle (article) {
                 this.$router.push('/editor/' + article._id);
-            },
-            /**判断列表tab键active的值index*/
-            judgeTab (tab) {
-                var tab_index = '';
-                switch (tab){
-                    case 'all':
-                        tab_index = '1-1';
-                        break;
-                    case 'html':
-                        tab_index = '1-2';
-                        break;
-                    case 'css':
-                        tab_index = '1-3';
-                        break;
-                    case 'js':
-                        tab_index = '1-4';
-                        break;
-                    case 'vue':
-                        tab_index = '1-5';
-                        break;
-                    case 'angular':
-                        tab_index = '1-6';
-                        break;
-                    case 'node':
-                        tab_index = '1-7';
-                        break;
-                }
-                return tab_index;
             }
         }
     }

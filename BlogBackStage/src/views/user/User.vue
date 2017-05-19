@@ -1,5 +1,7 @@
 <template>
+    <div class="container-wrap">
 
+    </div>
 </template>
 <script>
     export default {

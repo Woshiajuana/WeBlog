@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 /**引入数据模型*/
 const user_module = require('../models/user');
 const article_module = require('../models/article');
+const label_module = require('../models/label');
 /**引入express包*/
 const express = require('express');
 /**创建路由*/
@@ -181,6 +182,49 @@ router.get('/blog_backstage/fetchArticlesList',check_api_token,(req,res) => {
     });
 });
 
+/**存储标签*/
+router.get('/blog_backstage/createLabel',( req, res ) => {
+    var label = req.query.label && JSON.parse( req.query.label );
+    if (!label) {
+        res.json({
+            status: 0,
+            msg: '东西都没写，竟敢调戏窝！'
+        });
+        return;
+    }
+    label.label && label.label.trim();
+    /**存储*/
+    label_module.create(label, (err,doc) => {
+        if (err) res.json({status: 0,msg:'创建失败，是否已有该标签'});
+        else res.json({status: 1,msg:'创建成功'});
+    });
+});
+
+/**删除标签*/
+router.get('/blog_backstage/deleteLabel',( req, res ) => {
+    var label = req.query.label && JSON.parse( req.query.label );
+    if (!label) {
+        res.json({
+            status: 0,
+            msg: '竟敢调戏窝！'
+        });
+        return;
+    }
+    label_module.remove(label, (err,doc) => {
+        if (err) res.json({status: 0,msg:'删除失败'});
+        else res.json({status: 1,msg:'删除成功'});
+    });
+});
+
+/**获取标签*/
+router.get('/blog_backstage/fetchLabel',( req, res ) => {
+    label_module.find((err,doc) => {
+        if (err) res.json({status: 0});
+        else res.json({status: 1,data: {labels:doc}});
+    });
+});
+
+
 
 /**获取文章列表数据*/
 router.get('/blog/fetchArticlesList',(req,res) => {
@@ -228,6 +272,7 @@ router.get('/blog/fetchArticle',(req,res) => {
         }
     })
 });
+
 
 
 module.exports = router;

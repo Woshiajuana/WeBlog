@@ -49,6 +49,21 @@ const Util = function (win) {
         Util.ajax( '/blog_backstage/deleteArticle',{_id}, 'GET', success_callback, fail_callback );
     };
 
+    /**创建标签*/
+    Util.createLabel = function (label,success_callback,fail_callback) {
+        Util.ajax( '/blog_backstage/createLabel',{ label }, 'GET', success_callback, fail_callback );
+    };
+
+    /**删除标签*/
+    Util.deleteLabel = function (label,success_callback,fail_callback) {
+        Util.ajax( '/blog_backstage/deleteLabel',{ label }, 'GET', success_callback, fail_callback );
+    };
+
+    /**获取标签*/
+    Util.fetchLabel = function (success_callback,fail_callback) {
+        Util.ajax( '/blog_backstage/fetchLabel',{}, 'GET', success_callback, fail_callback );
+    };
+
     /**获取文章列表*/
     Util.fetchArticlesList = function (fetch_condition,success_callback,fail_callback) {
         Util.ajax( '/blog_backstage/fetchArticlesList', fetch_condition, 'GET', success_callback, fail_callback );

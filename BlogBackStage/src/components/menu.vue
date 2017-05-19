@@ -3,14 +3,10 @@
         <el-menu :default-active="tabIndex" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-document"></i>全部文章</template>
-                <el-menu-item-group>
-                    <el-menu-item index="1-1"><a href="#/?tab=all">ALL FILES</a></el-menu-item>
-                    <el-menu-item index="1-2"><a href="#/?tab=html">HTML</a></el-menu-item>
-                    <el-menu-item index="1-3"><a href="#/?tab=css">CSS</a></el-menu-item>
-                    <el-menu-item index="1-4"><a href="#/?tab=js">JAVASCRIPT</a></el-menu-item>
-                    <el-menu-item index="1-5"><a href="#/?tab=vue">VUE</a></el-menu-item>
-                    <el-menu-item index="1-6"><a href="#/?tab=angular">ANGULAR</a></el-menu-item>
-                    <el-menu-item index="1-7"><a href="#/?tab=node">NODE</a></el-menu-item>
+                <el-menu-item-group v-loading="labelLoading"
+                                    element-loading-text="loading~~~">
+                    <el-menu-item index="all"><a href="#/?tab=all">ALL FILES</a></el-menu-item>
+                    <el-menu-item v-for="(label_item,label_index) in labelArr" :index="label_item.label"><a :href="'#/?tab='+ label_item.label" v-text="label_item.label"></a></el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="2"><i class="el-icon-edit"></i><a href="#/editor">发表文章</a></el-menu-item>
@@ -22,10 +18,24 @@
 <script>
     export default {
         name: 'menu',
+        data () {
+            return {
+                is_loading: true
+            }
+        },
         computed: {
             tabIndex(){
                 return this.$store.state.tab_index;
+            },
+            labelArr () {
+                return this.$store.state.label_arr;
+            },
+            labelLoading () {
+                return this.$store.state.label_loading;
             }
+        },
+        created () {
+            this.$store.dispatch('fetchLabel');
         },
         methods: {
             handleOpen(key, keyPath) {
