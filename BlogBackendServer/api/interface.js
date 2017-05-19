@@ -183,7 +183,7 @@ router.get('/blog_backstage/fetchArticlesList',check_api_token,(req,res) => {
 });
 
 /**存储标签*/
-router.get('/blog_backstage/createLabel',( req, res ) => {
+router.get('/blog_backstage/createLabel',check_api_token,( req, res ) => {
     var label = req.query.label && JSON.parse( req.query.label );
     if (!label) {
         res.json({
@@ -201,7 +201,7 @@ router.get('/blog_backstage/createLabel',( req, res ) => {
 });
 
 /**删除标签*/
-router.get('/blog_backstage/deleteLabel',( req, res ) => {
+router.get('/blog_backstage/deleteLabel',check_api_token,( req, res ) => {
     var label = req.query.label && JSON.parse( req.query.label );
     if (!label) {
         res.json({
@@ -217,7 +217,7 @@ router.get('/blog_backstage/deleteLabel',( req, res ) => {
 });
 
 /**获取标签*/
-router.get('/blog_backstage/fetchLabel',( req, res ) => {
+router.get('/blog_backstage/fetchLabel',check_api_token,( req, res ) => {
     label_module.find((err,doc) => {
         if (err) res.json({status: 0});
         else res.json({status: 1,data: {labels:doc}});
@@ -273,6 +273,12 @@ router.get('/blog/fetchArticle',(req,res) => {
     })
 });
 
-
+/**获取标签*/
+router.get('/blog/fetchLabel',( req, res ) => {
+    label_module.find((err,doc) => {
+        if (err) res.json({status: 0});
+        else res.json({status: 1,data: {labels:doc}});
+    });
+});
 
 module.exports = router;

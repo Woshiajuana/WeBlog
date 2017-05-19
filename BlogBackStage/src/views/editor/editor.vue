@@ -9,9 +9,9 @@
                 <template slot="prepend">
                     <el-select v-model="article_type" placeholder="请选择文章类型">
                         <el-option
-                            v-for="item in options"
+                            v-for="item in labelArr"
                             :label="item.label"
-                            :value="item.value">
+                            :value="item.label">
                         </el-option>
                     </el-select>
                 </template>
@@ -40,29 +40,15 @@
                 is_loading: false,
                 article_title: '',
                 article_type: '',
-                options: [{
-                    value: 'vue',
-                    label: 'vue'
-                }, {
-                    value: 'html',
-                    label: 'html'
-                }, {
-                    value: 'css',
-                    label: 'css'
-                }, {
-                    value: 'angular',
-                    label: 'angular'
-                }, {
-                    value: 'node',
-                    label: 'node'
-                }, {
-                    value: 'js',
-                    label: 'js'
-                }],
                 simplemde: '',
                 article: '',
                 article_con: '',
                 loading_text: '拼命上传中~~~'
+            }
+        },
+        computed: {
+            labelArr () {
+                return this.$store.state.label_arr;
             }
         },
         methods: {

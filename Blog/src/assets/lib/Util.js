@@ -29,6 +29,11 @@ const Util = function (win) {
         Util.ajax( '/blog/fetchArticle',{fetch_condition},'GET', success_callback,fail_callback);
     };
 
+    /**获取标签*/
+    Util.fetchLabel = function (success_callback,fail_callback) {
+        Util.ajax( '/blog/fetchLabel',{}, 'GET', success_callback, fail_callback );
+    };
+
     /**
      * 公用请求ajax的方式
      * */
