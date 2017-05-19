@@ -1,0 +1,42 @@
+@import "./define";
+html{
+    overflow-y: scroll;
+}
+html,body{
+    @extend %w100;
+    background-color: #f5f5f5;
+}
+#app{
+    @extend %pr;
+}
+.views-wrap{
+    @extend %ma;
+    @extend %oh;
+    @extend %pr;
+    padding: 80px 20px 0;
+    width: 760px;
+}
+.page-wrap{
+    @extend %tac;
+    padding: 30px 0;
+}
+
+@keyframes rotate360 {
+    0%{
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+    100%{
+        transform: rotate(360deg);
+        transform-origin: center;
+    }
+}
+@keyframes animate_top {
+    0%{
+        transform: translate3d(0,110%,0);
+    }
+    100%{
+        transform: translate3d(0,-110%,0);
+    }
+}
+

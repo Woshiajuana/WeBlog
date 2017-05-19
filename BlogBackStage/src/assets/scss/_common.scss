@@ -1,0 +1,16 @@
+@import "./define";
+#app,html,body{
+    @extend %oh;
+    @extend %h100;
+}
+.views-wrap{
+    @extend %oh;
+    @extend %w100;
+    @extend %h100;
+}
+.el-message-box__wrapper{
+    z-index: 10010 !important;
+}
+.el-dropdown-menu{
+    z-index: 10001 !important;
+}
