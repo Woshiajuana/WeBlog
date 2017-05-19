@@ -35,9 +35,16 @@
             fetchArticle (_id) {
                 Util.fetchArticle({_id}, (result) => {
                     if (result.status) {
-                        var data = result.data;
-                        this.article_con = marked(result.data.articles[0].article_con);
+                        var data = result.data,
+                            articles = result.data.articles;
+                        if(!articles.length) {
+                            this.$router.push('/error');
+                            return;
+                        }
+                        this.article_con = marked(articles[0].article_con);
                         this.$store.commit( types.SET_TITLE, data.articles[0].article_title + '：' )
+                    } else {
+                        this.$router.push('/error');
                     }
                 });
             }

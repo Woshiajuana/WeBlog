@@ -9,6 +9,7 @@ import Result from '../views/search/children/Result.vue'
 import Category from '../views/article/children/Category.vue'
 import List from '../views/article/children/List.vue'
 import Comment from '../views/article/children/Comment.vue'
+import Error from '../views/error/Error.vue'
 
 Vue.use(Router);
 
@@ -76,6 +77,12 @@ export default new Router({
             path: '/other',
             name: 'other',
             component: Other
+        },
+        /**错误页*/
+        {
+            path: '/error',
+            name: 'error',
+            component: Error
         },
         /**首页(重定向)*/
         {

@@ -211,6 +211,7 @@ router.get('/blog/fetchArticlesList',(req,res) => {
 /**获取文章内容*/
 router.get('/blog/fetchArticle',(req,res) => {
     let fetch_condition = req.query.fetch_condition && JSON.parse(req.query.fetch_condition);
+    fetch_condition.article_is_publish = true;
     article_module.find(fetch_condition,(err,doc) => {
         if (doc) {
             res.json({
