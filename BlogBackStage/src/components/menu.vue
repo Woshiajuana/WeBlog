@@ -5,7 +5,7 @@
                 <template slot="title"><i class="el-icon-document"></i>全部文章</template>
                 <el-menu-item-group v-loading="labelLoading">
                     <el-menu-item index="all"><a href="#/?tab=all">ALL FILES</a></el-menu-item>
-                    <el-menu-item v-for="(label_item,label_index) in labelArr" :index="label_item.label"><a :href="'#/?tab='+ label_item.label" v-text="label_item.label"></a></el-menu-item>
+                    <el-menu-item v-for="(label_item,label_index) in labelArr" :index="label_item.label"><a :href="'#/?tab='+ label_item.label" v-text="label_item.label.toUpperCase()"></a></el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="2"><i class="el-icon-edit"></i><a href="#/editor">发表文章</a></el-menu-item>
