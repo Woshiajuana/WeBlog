@@ -3,7 +3,9 @@
     <div class="views-wrap">
         <my-header></my-header>
         <my-menu></my-menu>
-        <router-view></router-view>
+        <div class="container-wrap">
+            <router-view></router-view>
+        </div>
     </div>
     <!--/首页-->
 </template>

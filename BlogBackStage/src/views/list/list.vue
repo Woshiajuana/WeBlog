@@ -1,6 +1,5 @@
 <template>
-    <div class="container-wrap">
-        <div class="container-box"
+    <div class="container-box"
              v-loading="is_loading"
              element-loading-text="拼命加载中~~~">
             <div class="search-box">
@@ -65,7 +64,6 @@
                 </el-pagination>
             </div>
         </div>
-    </div>
 </template>
 <script>
     import Util from '../../assets/lib/Util';

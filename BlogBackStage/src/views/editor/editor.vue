@@ -1,7 +1,5 @@
 <template>
-    <!--发表文章-->
-    <div class="container-wrap">
-        <div class="container-content editor-wrap"
+    <div class="container-content editor-wrap"
              v-loading="is_loading"
              :element-loading-text="loading_text">
             <p class="prompt-text"><span class="prompt-icon">*</span>文章类型和文章标题：</p>
@@ -26,8 +24,6 @@
                 <el-button v-if="article" type="primary" @click="updateArticle()">完成修改</el-button>
             </div>
         </div>
-    </div>
-    <!--/发表文章-->
 </template>
 <script>
     import types from '../../store/mutation-types'

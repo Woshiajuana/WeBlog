@@ -1,6 +1,5 @@
 <template>
-    <div class="container-wrap">
-        <div class="container-box"
+    <div class="container-box"
              v-loading="is_loading"
              element-loading-text="loading~~~">
             <div class="container-content label-content">
@@ -27,7 +26,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 <script>
     import Util from '../../assets/lib/Util'
