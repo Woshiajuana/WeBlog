@@ -12,7 +12,10 @@
                     size="mini"
                     @blur="handleInputConfirm"
                 ></el-input>
-                <el-button class="button-new-tag" v-else size="small" @click="showInput">+ New Tag</el-button>
+                <el-button class="button-new-tag"
+                           v-else
+                           size="small"
+                           @click="showInput">+ 添加新标签</el-button>
                 <div class="label-box">
                     <el-tag
                         :key="tag"
@@ -50,7 +53,6 @@
         },
         created () {
             this.$store.commit(types.SET_TAB_INDEX,'3');
-            this.fetchLabel();
         },
         methods: {
             handleClose(tag) {

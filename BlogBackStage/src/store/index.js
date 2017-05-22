@@ -11,14 +11,13 @@ Vue.use(Vuex);
  * 数据存储
  * */
 const state = {
-    tab_index: '1-1',
+    tab_index: 'all',
     label_arr: [],
     label_loading: false
 };
 
 const actions = {
     fetchLabel ({state,commit}) {
-        // state.label_loading = true;
         commit(types.SET_LABEL_LOADING,true);
         Util.fetchLabel( (result) => {
             setTimeout(() => {

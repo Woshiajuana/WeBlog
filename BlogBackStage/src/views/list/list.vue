@@ -155,7 +155,9 @@
                 var key_word = route ? route.query.key_word: this.$route.query.key_word;
                 var page_num = route ? route.query.page_num: this.$route.query.page_num;
                 this.page_num = +page_num || 1;
-                this.$store.commit(types.SET_TAB_INDEX,tab);
+                setTimeout(()=>{
+                    this.$store.commit(types.SET_TAB_INDEX,tab);
+                },600);
                 Util.fetchArticlesList({
                     tab: tab,
                     page_num: this.page_num,
