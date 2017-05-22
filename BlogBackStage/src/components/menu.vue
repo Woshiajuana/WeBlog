@@ -1,6 +1,6 @@
 <template>
     <div class="menu-wrap">
-        <el-menu :default-active="tabIndex" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+        <el-menu :default-active="tabIndex" class="el-menu-vertical-demo">
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-document"></i>全部文章</template>
                 <el-menu-item-group v-loading="labelLoading">
@@ -35,14 +35,6 @@
         },
         created () {
             this.$store.dispatch('fetchLabel');
-        },
-        methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
         }
     }
 </script>
