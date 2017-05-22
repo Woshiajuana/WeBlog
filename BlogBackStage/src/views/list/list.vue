@@ -48,8 +48,8 @@
                         width="220">
                         <template scope="scope">
                             <el-button type="default" size="small" @click="editorArticle(scope.row)">编辑</el-button>
-                            <el-button @click="offOrReleaseArticle(scope.row)" v-if="scope.row.article_is_publish" type="info" size="small">下架</el-button>
-                            <el-button @click="offOrReleaseArticle(scope.row)" v-else type="info" size="small">发表</el-button>
+                            <el-button @click="offOrReleaseArticle(scope.row)" v-if="scope.row.article_is_publish" type="warning" size="small">下架</el-button>
+                            <el-button @click="offOrReleaseArticle(scope.row)" type="info" v-else size="small">发表</el-button>
                             <el-button @click="deleteArticle(scope.row)" type="danger" size="small">删除</el-button>
                         </template>
                     </el-table-column>
