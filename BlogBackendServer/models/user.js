@@ -10,7 +10,8 @@ const userSchema = new Schema({
         type: String,
         unique: true
     },
-    user_password: String
+    user_password: String,
+    user_date: Date
 },{
     versionKey: false
 });

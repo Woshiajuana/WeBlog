@@ -61,6 +61,74 @@ router.post('/blog_backstage/login',(req,res) => {
     });
 });
 
+/**用户下线*/
+
+/**用户创建*/
+router.post('/blog_backstage/createUser',check_api_token,(req,res) => {
+    /**这里的req.body能够使用就在index.js中引入了const bodyParser = require('body-parser')*/
+    var user = req.query.user && JSON.parse( req.query.user );
+    if (!user) {
+        res.json({
+            status: 0,
+            msg: '竟敢调戏窝！'
+        });
+        return;
+    }
+    user.user_date = new Date();
+    user.is_on_line = false;
+    user_module.create(user, function(err, doc){
+        if(err){
+            res.json({
+                status: 0,
+                msg: '创建失败，是否已有该用户帐号'
+            });
+        }else{
+            res.json({
+                status: 1,
+                msg: '创建成功'
+            });
+        }
+    });
+});
+
+/**删除用户*/
+router.get('/blog_backstage/deleteUser',check_api_token,(req,res) => {
+    let user_name = req.query.user_name;
+    user_module.remove({user_name},(err,doc) => {
+        if (err) {
+            res.json({
+                status: 0,
+                msg: '删除失败'
+            });
+        } else {
+            res.json({
+                status: 1,
+                msg: '删除成功'
+            });
+        }
+    })
+});
+
+/**用户获取*/
+router.get('/blog_backstage/fetchUser',check_api_token,(req,res) => {
+    user_module.find((err,doc) => {
+        if (err) {
+            res.json({
+                status: 0,
+                msg: '获取数据失败'
+            });
+        } else {
+            res.json({
+                status: 1,
+                msg: '获取数据成功',
+                data: {
+                    users: doc
+                }
+            });
+        }
+    })
+});
+
 /**存储文章*/
 router.post('/blog_backstage/uploadArticle',( req, res ) => {
     var article = req.query.article && JSON.parse( req.query.article );

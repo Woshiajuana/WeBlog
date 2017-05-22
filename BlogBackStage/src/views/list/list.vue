@@ -136,7 +136,9 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    this.is_loading = true;
                     Util.deleteArticle(_id,(result) => {
+                        this.is_loading = false;
                         if(result.status){
                             this.fetchArticlesList();
                             this.$message({type: 'success', message: result.msg});

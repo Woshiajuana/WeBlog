@@ -24,6 +24,21 @@ const Util = function (win) {
         Util.ajax( '/blog_backstage/login', user, 'POST', success_callback, fail_callback );
     };
 
+    /**用户创建*/
+    Util.createUser = function (user,success_callback, fail_callback) {
+        Util.ajax( '/blog_backstage/createUser', {user}, 'POST', success_callback, fail_callback );
+    };
+
+    /**用户获取*/
+    Util.fetchUser = function (success_callback, fail_callback) {
+        Util.ajax( '/blog_backstage/fetchUser', {}, 'GET', success_callback, fail_callback );
+    };
+
+    /**用户删除*/
+    Util.deleteUser = function (user_name,success_callback, fail_callback) {
+        Util.ajax( '/blog_backstage/deleteUser', {user_name:user_name}, 'GET', success_callback, fail_callback );
+    };
+
     /**上传文章*/
     Util.uploadArticle = function (article,success_callback, fail_callback) {
         Util.ajax( '/blog_backstage/uploadArticle', {article}, 'POST', success_callback, fail_callback );
